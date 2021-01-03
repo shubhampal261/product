@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -28,15 +29,19 @@ public class Product {
     @UpdateTimestamp
     private Date updatedAt;
 
+    @Column(name = "rate", nullable = false)
+    private Double rate;
+
     public Product() {
     }
 
-    public Product(int id, String name, String code, Date createdAt, Date updatedAt) {
+    public Product(int id, String name, String code, Date createdAt, Date updatedAt, Double rate) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.rate = rate;
     }
 
     @Override
@@ -47,6 +52,7 @@ public class Product {
                 ", code='" + code + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", rate=" + rate +
                 '}';
     }
 
@@ -88,5 +94,13 @@ public class Product {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Double getRate() {
+        return rate;
+    }
+
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 }

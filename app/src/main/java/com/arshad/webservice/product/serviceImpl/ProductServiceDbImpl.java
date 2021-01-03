@@ -12,36 +12,36 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-@Qualifier("userServiceDbImpl")
+@Qualifier("productServiceDbImpl")
 public class ProductServiceDbImpl implements ProductService {
 
     @Autowired
-    private ProductJPARepository userRepository;
+    private ProductJPARepository productRepository;
 
     public List<ProductResponseModel> getAll() {
-        List<ProductResponseModel> userList = ProductMapper.INSTANCE.mapToUserResponseModelList(userRepository.findAll());
-        return userList;
+        List<ProductResponseModel> productList = ProductMapper.INSTANCE.mapToUserResponseModelList(productRepository.findAll());
+        return productList;
     }
 
     public ProductResponseModel getByID(int id) {
-        Optional<Product> userOptional = userRepository.findById(id);
-        if (userOptional.isPresent()) {
-            return ProductMapper.INSTANCE.mapToUserResponseModel(userOptional.get());
+        Optional<Product> productOptional = productRepository.findById(id);
+        if (productOptional.isPresent()) {
+            return ProductMapper.INSTANCE.mapToUserResponseModel(productOptional.get());
         }
         return null;
     }
 
     public ProductResponseModel add(Product product) {
-        product = userRepository.save(product);
+        product = productRepository.save(product);
         return ProductMapper.INSTANCE.mapToUserResponseModel(product);
     }
 
     @Override
     public ProductResponseModel deleteById(int id) {
-        Optional<Product> userOptional = userRepository.findById(id);
-        if (userOptional.isPresent()) {
-            Product product = userOptional.get();
-            userRepository.delete(product);
+        Optional<Product> productOptional = productRepository.findById(id);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            productRepository.delete(product);
             return ProductMapper.INSTANCE.mapToUserResponseModel(product);
         }
         return null;
