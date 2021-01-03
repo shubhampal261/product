@@ -29,24 +29,24 @@ public class ProductController {
 
     @GetMapping(path = "/{id}")
     public ProductResponseModel getById(@PathVariable int id){
-        ProductResponseModel user = productServiceImpl.getByID(id);
-        if(user == null){
+        ProductResponseModel product = productServiceImpl.getByID(id);
+        if(product == null){
             throw new ProductNotFoundException(String.format(ProductConstants.NOT_FOUND_FOR_ID,id));
         }
-        return user;
+        return product;
     }
 
     @PostMapping()
-    public ResponseEntity add(@RequestBody Product user){
-        productServiceImpl.add(user);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+    public ResponseEntity add(@RequestBody Product product){
+        productServiceImpl.add(product);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(product.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable int id){
-        ProductResponseModel user = productServiceImpl.deleteById(id);
-        if(user == null){
+        ProductResponseModel product = productServiceImpl.deleteById(id);
+        if(product == null){
             throw new ProductNotFoundException(String.format(ProductConstants.CANNOT_DELETE,id));
         }
         return ResponseEntity.noContent().build();

@@ -11,7 +11,7 @@ public interface ProductService {
 
     public ProductResponseModel getByID(int id);
 
-    public ProductResponseModel add(Product user);
+    public ProductResponseModel add(Product product);
 
     public ProductResponseModel deleteById(int id);
 }

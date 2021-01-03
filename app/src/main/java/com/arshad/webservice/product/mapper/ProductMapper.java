@@ -12,7 +12,7 @@ public interface ProductMapper {
 
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    ProductResponseModel mapToUserResponseModel(final Product user);
+    ProductResponseModel mapToUserResponseModel(final Product product);
 
-    List<ProductResponseModel> mapToUserResponseModelList(final List<Product> userList);
+    List<ProductResponseModel> mapToUserResponseModelList(final List<Product> productList);
 }
