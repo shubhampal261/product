@@ -19,21 +19,21 @@ public class ProductServiceDbImpl implements ProductService {
     private ProductJPARepository productRepository;
 
     public List<ProductResponseModel> getAll() {
-        List<ProductResponseModel> productList = ProductMapper.INSTANCE.mapToUserResponseModelList(productRepository.findAll());
+        List<ProductResponseModel> productList = ProductMapper.INSTANCE.mapToProductResponseModelList(productRepository.findAll());
         return productList;
     }
 
     public ProductResponseModel getByID(int id) {
         Optional<Product> productOptional = productRepository.findById(id);
         if (productOptional.isPresent()) {
-            return ProductMapper.INSTANCE.mapToUserResponseModel(productOptional.get());
+            return ProductMapper.INSTANCE.mapToProductResponseModel(productOptional.get());
         }
         return null;
     }
 
     public ProductResponseModel add(Product product) {
         product = productRepository.save(product);
-        return ProductMapper.INSTANCE.mapToUserResponseModel(product);
+        return ProductMapper.INSTANCE.mapToProductResponseModel(product);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ProductServiceDbImpl implements ProductService {
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
             productRepository.delete(product);
-            return ProductMapper.INSTANCE.mapToUserResponseModel(product);
+            return ProductMapper.INSTANCE.mapToProductResponseModel(product);
         }
         return null;
     }
